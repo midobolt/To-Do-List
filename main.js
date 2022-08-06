@@ -1,4 +1,4 @@
-window.addEventListener('load', () =>{
+window.addEventListener('load', () => {
     todos = JSON.parse(localStorage.getItem('todos')) || [];
     const nameInput = document.querySelector('#name');
     const newTodoForm = document.querySelector('#new-todo-form');
@@ -11,7 +11,7 @@ window.addEventListener('load', () =>{
         localStorage.setItem('username', e.target.value);
     })
 
-    newTodoForm.addEventListener('submit', e =>{
+    newTodoForm.addEventListener('submit', e => {
         e.preventDefault();
 
         const todo = {
@@ -29,7 +29,6 @@ window.addEventListener('load', () =>{
 
         DisplayTodos();
     })
-
     DisplayTodos();
 })
 
@@ -105,6 +104,12 @@ function DisplayTodos () {
                 localStorage.setItem('todos', JSON.stringify(todos));
                 DisplayTodos();
             })
+        })
+
+        deleteButton.addEventListener('click', e => {
+            todos = todos.filter(t => t != todo);
+            localStorage.setItem('todos', JSON.stringify(todos));
+            DisplayTodos();
         })
     })
 }
