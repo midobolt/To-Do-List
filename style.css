@@ -228,3 +228,9 @@ input:checked ~ .bubble::after {
     text-decoration: line-through;
     color: var(--grey);
 }
+
+@media (max-width: 504px) {
+    .todo-list {
+        position: absolute;
+    }
+}
