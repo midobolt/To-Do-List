@@ -41,13 +41,13 @@ function DisplayTodos () {
         const todoItem = document.createElement('div');
         todoItem.classList.add('todo-item')
 
-        const label = doument.createElement('label');
+        const label = document.createElement('label');
         const input = document.createElement('input');
-        const span = doument.createElement('span');
+        const span = document.createElement('span');
         const content = document.createElement('div');
         const actions = document.createElement('div');
         const edit = document.createElement('button');
-        const deleteButton = doument.createElement('button');
+        const deleteButton = document.createElement('button');
 
         input.type = 'checkbox';
         input.checked = todo.done;
@@ -64,7 +64,7 @@ function DisplayTodos () {
         edit.classList.add('edit');
         deleteButton.classList.add('delete');
 
-        content.innerHTML = '<input type="text" value="${todo.content}" readonly>';
+        content.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
         edit.innerHTML = 'Edit';
         deleteButton.innerHTML = 'Delete';
 
@@ -84,7 +84,7 @@ function DisplayTodos () {
 
         input.addEventListener('click', e => {
             todo.done = e.target.checked;
-            localStorage.setItem('todos', JASON.stringify(todos));
+            localStorage.setItem('todos', JSON.stringify(todos));
 
             if (todo.done) {
                 todoItem.classList.add('done');
@@ -98,9 +98,10 @@ function DisplayTodos () {
         edit.addEventListener('click', e => {
             const input = content.querySelector('input');
             input.removeAttribute('readonly');
+            input.focus();
             input.addEventListener('blur', e => {
                 input.setAttribute('readonly', true);
-                todo.content = e.target-value;
+                todo.content = e.target.value;
                 localStorage.setItem('todos', JSON.stringify(todos));
                 DisplayTodos();
             })
