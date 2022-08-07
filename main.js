@@ -77,6 +77,7 @@ function DisplayTodos () {
         todoItem.appendChild(actions);
 
         todoList.appendChild(todoItem);
+        
 
         if (todo.done) {
             todoItem.classList.add('done');
@@ -97,7 +98,10 @@ function DisplayTodos () {
 
         edit.addEventListener('click', e => {
             const input = content.querySelector('input');
+            const end = input.value.length;
+
             input.removeAttribute('readonly');
+            input.setSelectionRange(end, end);
             input.focus();
             input.addEventListener('blur', e => {
                 input.setAttribute('readonly', true);
